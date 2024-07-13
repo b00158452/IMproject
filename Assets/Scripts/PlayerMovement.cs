@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 2.0f;
     public float turnSpeed = 45.0f;
     public float horizontalInput;
     public float forwardInput = 1.0f; // Set forwardInput to 1 to start running
