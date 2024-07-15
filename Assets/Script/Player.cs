@@ -10,7 +10,10 @@ public class Player : MonoBehaviour
     public float forwardSpeed;
 
     private int desiredLane = 1;
-    public float laneDistance = 4; 
+    public float laneDistance = 4;
+
+    public float jumpForce;
+    public float Gravity = -20;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -18,10 +21,19 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         direction.z = forwardSpeed;
 
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        direction.y += Gravity * Time.deltaTime;
+        if (controller.isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Jump();
+            }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             desiredLane++;
             if (desiredLane == 3)
@@ -56,4 +68,10 @@ public class Player : MonoBehaviour
     {
         controller.Move(direction * Time.fixedDeltaTime);
     }
+
+    private void Jump()
+    {
+        direction.y = jumpForce;
+    }
+
 }
