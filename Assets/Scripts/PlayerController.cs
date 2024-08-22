@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         isGrounded = false;
+        Audio.instance.PlaySFX(1);
     }
 
     private void OnCollisionEnter(Collision collision)
